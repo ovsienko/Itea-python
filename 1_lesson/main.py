@@ -1,3 +1,12 @@
+# !/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+my_list = []
+for i in range(100):
+    if i % 2 == 0:
+        my_list.append(i)
+print(my_list)
+
 cap = {
     'Ukraine': 'Kyiv',
     'Poland': 'Warsaw',

@@ -14,6 +14,7 @@ class Shop:
     def set_sells(self, sells):
         self.sells += sells
         Shop._total += sells
+    total = property(get_total, None, None, 'total')
 
 
 achan = Shop('Achan', 100)
@@ -24,3 +25,4 @@ print(achan.get_total())
 atb = Shop('ATB', 3)
 print(atb.sells)
 print(atb.get_total())
+print(atb.total)

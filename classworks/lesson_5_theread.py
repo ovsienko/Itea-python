@@ -13,7 +13,7 @@ def random_generator(num, thread_name):
 
 
 # thread1 = Thread(target=random_generator, args=(5, 'thread1'))
-# thread2 = Thread(target=random_generator, args=(5, 'thread2'))
+# thread2 = Thread(target=random_generreator, args=(5, 'thread2'))
 
 # thread1.start()
 # thread2.start()

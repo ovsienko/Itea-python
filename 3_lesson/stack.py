@@ -14,29 +14,29 @@ class Stack:
     def get_items(self):
         return self._items
 
-    def isFull(self):
+    def is_full(self):
         if self.size() >= self._max_size:
             return True
         else:
             return False
 
-    def isEmpty(self):
+    def is_empty(self):
         if self.size() == 0:
             return True
         else:
             return False
 
     def push(self, item):
-        if self.isFull():
+        if self.is_full():
             print('Stack is full')
         else:
             self._items.append(item)
 
     def pop(self):
-        if not self.isEmpty():
+        if not self.is_empty():
             return self._items.pop()
         else:
-            print('Stack alredy empty')
+            raise Exception('Stack alredy empty')
 
     def top(self):
         return self._items[-1]
@@ -48,29 +48,29 @@ class Stack:
 class Queue(Stack):
 
     def pop(self):
-        if not self.isEmpty():
+        if not self.is_empty():
             return self._items.pop(0)
         else:
-            print('Queue alredy empty')
+            raise Exception('Queue alredy empty')
 
     def push(self, item):
-        if self.isFull():
-            print('Queue is full')
+        if self.is_full():
+            raise Exception('Queue is full')
         else:
             self._items.append(item)
 
     def top(self):
-        if not self.isEmpty:
+        if not self.is_empty:
             return self._items[0]
 
 
 stack = Stack(5)
-print('Stack is empty ', stack.isEmpty())
+print('Stack is empty ', stack.is_empty())
 stack.push(1)
-print('Stack is empty ', stack.isEmpty())
+print('Stack is empty ', stack.is_empty())
 stack.push(2)
 stack.push(3)
-stack.isFull()
+stack.is_full()
 print(stack.top())
 stack.push(23)
 stack.push(1)

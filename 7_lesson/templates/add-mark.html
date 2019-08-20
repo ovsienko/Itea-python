@@ -20,7 +20,7 @@
 {% if not error %}
 <div class="content">
 <h1>Додати оцінку</h1>
-<p>Студент {{student[0]}} {{student[1]}} група {{student[2]}} </p>
+<p><a href="/student/{{student[4]}}">Студент {{student[0]}} {{student[1]}} група {{student[2]}} </a></p>
 {{message}}
 <form action="/student/{{student[4]}}/add-mark" method="POST">
 <input type="subj" name="subj" placeholder="Предмет">

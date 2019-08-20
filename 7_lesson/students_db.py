@@ -16,32 +16,37 @@ class Db:
                                              passwd=self._password,
                                              database=self._database)
 
+    
     def __enter__(self):
-        self._mycursor = self._mydb.cursor()
-        return self._mycursor
+        return  self._mydb
+
 
     def __exit__(self, *args):
-        self._mycursor.close()
         self._mydb.close()
 
 
 def sql_fetchall(query):
-    with Db() as mycursor:
+    with Db() as mydb:
+        mycursor = mydb.cursor()
         mycursor.execute(query)
         myresult = mycursor.fetchall()
     return myresult
 
 
 def sql_fetchone(query):
-    with Db() as mycursor:
+    with Db() as mydb:
+        mycursor = mydb.cursor()
         mycursor.execute(query)
         myresult = mycursor.fetchone()
     return myresult
 
+
 def sql_insert(query, val):
-    with Db() as mycursor:
+    with Db() as mydb:
+        mycursor = mydb.cursor()
         mycursor.execute(query, val)
-        Db()._mydb.commit()
+        mydb.commit()
+
 
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
@@ -115,8 +120,8 @@ def add_mark(id):
         sql = "INSERT INTO `mark` (`subj`, `mark`, `user_id`) VALUES (%s, %s, %s)"
         val = (form['subj'], form['mark'], student[4])
         sql_insert(sql, val)
-
-    return render_template('add-mark.html', student=student, admin=admin, message=val)
+        message = 'Оцінку додано! '
+    return render_template('add-mark.html', student=student, admin=admin, message=message)
 
 def search():
     pass

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style type="text/css">
+    p.error {
+        color: red;
+    }
+</style>
+<link href="" rel="stylesheet">
+</head>
+<body>
+{% if error %}
+    <p class="error">{{error}}</p>
+{% endif %}
+{% if not error %}
+<div class="content">
+<h1>Додати оцінку</h1>
+<p>Студент {{student[0]}} {{student[1]}} група {{student[2]}} </p>
+{{message}}
+<form action="/student/{{student[4]}}/add-mark" method="POST">
+<input type="subj" name="subj" placeholder="Предмет">
+<input type="number" name="mark"  min="1" max="5">
+<input type="submit" value="Додати">
+</form>
+
+
+{% endif %}
+<p>Создать базу данных студентов. У студента есть факультет, группа, оценки, номер студенческого билета. Написать программу, с двумя ролями: Администратор, Пользователь. Администратор может добавлять, изменять существующих студентов. Пользователь может получать список отличников, список всех студентов, искать студентов по по номеру студенческого, получать полную информацию о конкретном студенте (включая оценки, факультет)</p>
+</div>
+</body>
+</html>

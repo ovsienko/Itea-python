@@ -9,7 +9,7 @@
 <link href="" rel="stylesheet">
 </head>
 <body>
-    <style>
+        <style>
 ul {
   list-style-type: none;
   margin: 0;
@@ -40,50 +40,34 @@ li a:hover {
     <li><a href="/search">Пошук</a></li>
     <li><a href="/logout">Exit</a></li>
 </ul>
-<h1>Hello, {{username}}</h1>
-
-
-
+{% if error %}
+    <p class="error">Вам потрібно залогинитись під обліковим записом що має право на цю дію!</p>
+{% endif %}
+{% if not error %}
 <div class="content">
- <table>
-    <tr>
-     <th>Ім'я</th>
-     <th>Призвище</th>
-     <th>Група</th>
-     <th>Факультет</th>
-     <th>Номер квитка</th>
-     </tr>
-     <tr>
-     <td>{{student[0]}}</td>
-     <td>{{student[1]}}</td>
-     <td>{{student[2]}}</td>
-     <td>{{student[3]}}</td>
-     <td>{{student[4]}}</td>
-    </tr>
-</table>
-<p>Оцінки</p>
-<table>
-    <tr>
-        <th>Предмет</th>
-        <th>Бал</th>
-    </tr>
-    {% for mark in marks %}
-    <tr>
-        <td>{{mark[0]}}</td>
-        <td>{{mark[1]}}</td>
-        {% if admin %}
-        <td>
-            <a href="/mark/{{mark[2]}}/edit">Змінити оцінку</a>
-        </td>
-        {% endif %}
-    </tr>
-
-        {% endfor %}
-
-</table>
-    {% if admin %}
-    <a href="/student/{{student[5]}}/add-mark">Додати оцінку</a>
-    {% endif %}
+<h1>Редагувати студента</h1>
+<form action="/student/{{student[0]}}/edit" method="POST">
+    Ім'я: <br>
+<input type="text" name="name" value="{{student[1]}}"> <br>
+Призвище: <br>
+<input type="text" name="second_name" value="{{student[2]}}"> <br>
+Група: <br>
+<select name="group">
+    {% for group in groups %}
+      <option value="{{group[0]}}"
+        {% if group[0] == student[3] %}
+          selected="selected"
+          {% endif %}
+      >Факультет: {{group[2]}}, група: {{group[1]}}</option>
+   {% endfor %}
+</select> 
+<a href="add-group" target="blank">Дотати групу</a> <br>
+Номер студенського квитка: <br>
+<input type="text" name="number" value="{{student[4]}}"> <br>
+<input type="reset">
+<input type="submit" value="Зберегти">
+</form>
+{% endif %}
 </div>
 <p>Создать базу данных студентов. У студента есть факультет, группа, оценки, номер студенческого билета. Написать программу, с двумя ролями: Администратор, Пользователь. Администратор может добавлять, изменять существующих студентов. Пользователь может получать список отличников, список всех студентов, искать студентов по по номеру студенческого, получать полную информацию о конкретном студенте (включая оценки, факультет)</p>
 </body>

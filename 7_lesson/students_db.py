@@ -247,11 +247,10 @@ def search():
 
 @app.route('/top')
 def top():
-#список студентів по середній оцінці.
+# список студентів по середній оцінці.
     admin = is_admin(session)
     if not session.get('logged_in'):
         return redirect('/login', code=302)
-    username = session.get('logged_in')
     students = sql_fetchall('''SELECT students.id,
     students.name,
     students.second_name,
